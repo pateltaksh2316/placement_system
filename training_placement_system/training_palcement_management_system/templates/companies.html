@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f8f9fa;
+        }
+        h2 {
+            color: #343a40;
+        }
+        form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border: 5px solid #ddd;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            max-width: 10000px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        li span {
+            display: block;
+            font-size: 14px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<h1>Company List</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="company_name">Company Name:</label>
+    <input type="text" id="company_name" name="company_name" required>
+
+    <label for="industry">Industry:</label>
+    <input type="text" id="industry" name="industry" required>
+
+    <label for="job_role">Job Role:</label>
+    <input type="text" id="job_role" name="job_role" required>
+
+    <label for="placement_date">Placement Date:</label>
+    <input type="date" id="placement_date" name="placement_date" required>
+
+    <button type="submit">Add Company</button>
+</form>
+
+<ul>
+    {% for company in companies %}
+        <li>{{ company.company_name }} - {{ company.industry_name }} - {{ company.job_role }} - {{ company.placement_date }}</li>
+    {% endfor %}
+</ul>

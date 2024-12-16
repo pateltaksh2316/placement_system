@@ -1,0 +1,263 @@
+{% comment %} {% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Placements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 100px;
+            padding: 0;
+            background-color: white;
+        }
+        h1, h2 {
+            color: grey;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 5px solid #ddd;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 12px;
+            border: 10px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Placements</h1>
+
+    <!-- Form to Add a New Placement -->
+    <form method="POST">
+        {% csrf_token %}
+        <label for="student_id">Student:</label>
+        <input type="number" id="student_id" name="student_id" required>
+
+        {% comment %} <select name="student" id="student" required>
+            <option value="" disabled selected>Select a student</option>
+            {% for student in students %}
+            <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select> {% endcomment %}
+
+        {% comment %} <label for="company_id">Company:</label>
+        <input type="number" id="company_id" name="company_id" required> {% endcomment %}
+        {% comment %} <select name="company_id" id="company_id" required>
+            <option value="" disabled selected>Select a company</option>
+            {% for company in companies %}
+            <option value="{{ company.id }}">{{ company.company_name }}</option>
+            {% endfor %}
+        </select> {% endcomment %}
+
+        {% comment %} <label for="status">Status:</label>
+        <select name="status" id="status" name="status" required>
+            <option value="" disabled selected>Select status</option>
+            <option value="Pending">Pending</option>
+            <option value="Placed">Placed</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+
+        <button type="submit">Add Placement</button>
+    </form> {% endcomment %}
+
+    <!-- Table to Display Existing Placements -->
+    {% comment %} <h2>Placement Records</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Placement ID</th>
+                <th>Student</th>
+                <th>Company</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for placement in placements %}
+            <tr>
+                <td>{{ placement.id }}</td>
+                <td>{{ placement.student.name }}</td>
+                <td>{{ placement.company.company_name }}</td>
+                <td>{{ placement.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No placements found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br> {% endcomment %}
+    {% comment %} <a href="/">Back to Home</a>
+</body>
+</html> {% endcomment %} 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Placements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 100px;
+            padding: 0;
+            background-color: white;
+        }
+        h1, h2 {
+            color: grey;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 5px solid #ddd;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 12px;
+            border: 10px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Placements</h1>
+
+    <!-- Form to Add a New Placement -->
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="student_id">Student:</label>
+        {% comment %} <input type="text" id="student_id" name="student_id" required> {% endcomment %}
+        <select name="student_id" id="student_id" required>
+            <option value="" disabled selected>Select a student</option>
+            {% for student in students %}
+    
+            <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="company_id">Company:</label>
+        {% comment %} <input type="text" id="company_id" name="company_id" required> {% endcomment %}
+        <select name="company_id" id="company_id" required>
+            <option value="" disabled selected>Select a company</option>
+            {% for company in companies %}
+            <option value="{{ company.id }}">{{ company.company_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status" name="status" required>
+            <option value="" disabled selected>Select status</option>
+            <option value="Pending">Pending</option>
+            <option value="Placed">Placed</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+
+        <button type="submit">Add Placement</button>
+    </form>
+
+    <!-- Table to Display Existing Placements -->
+    {% comment %} <h2>Placement Records</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Placement ID</th>
+                <th>Student</th>
+                <th>Company</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for placement in placements %}
+            <tr>
+                <td>{{ placement.id }}</td>
+                <td>{{ placement.student.name }}</td>
+                <td>{{ placement.company.company_name }}</td>
+                <td>{{ placement.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No placements found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br> {% endcomment %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
